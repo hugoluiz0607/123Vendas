@@ -26,6 +26,9 @@ namespace VendasAPI.Data.Migrations
                     b.Property<bool>("Cancelado")
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("Desconto")
+                        .HasColumnType("TEXT");
+
                     b.Property<Guid>("ProdutoId")
                         .HasColumnType("TEXT");
 
@@ -58,6 +61,9 @@ namespace VendasAPI.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DataVenda")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("FilialId")
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("ValorTotal")
