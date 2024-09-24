@@ -77,6 +77,7 @@ namespace VendasAPI.API.Controllers
             vendaExistente.ClienteId = vendaAtualizada.ClienteId;
             vendaExistente.DataVenda = vendaAtualizada.DataVenda;
             vendaExistente.ValorTotal = vendaAtualizada.ValorTotal;
+            vendaExistente.FilialId = vendaAtualizada.FilialId;
 
             // Atualizar a lista de itens da venda
             foreach (var itemAtualizado in vendaAtualizada.Itens)
@@ -90,7 +91,14 @@ namespace VendasAPI.API.Controllers
                     itemExistente.ProdutoId = itemAtualizado.ProdutoId;
                     itemExistente.Quantidade = itemAtualizado.Quantidade;
                     itemExistente.ValorUnitario = itemAtualizado.ValorUnitario;
+                    itemExistente.Desconto = itemAtualizado.Desconto;
                     itemExistente.Cancelado = itemAtualizado.Cancelado;
+
+                    if (!itemExistente.Cancelado && itemAtualizado.Cancelado)
+                    {
+                        // Log do evento ItemCancelado
+                        Log.Information("ItemCancelado: Item {Id} da Venda {VendaId} para Cliente {ClienteId}", itemExistente.Id, vendaExistente.Id, vendaExistente.ClienteId);
+                    }
                 }
                 else
                 {
