@@ -92,13 +92,14 @@ namespace VendasAPI.API.Controllers
                     itemExistente.Quantidade = itemAtualizado.Quantidade;
                     itemExistente.ValorUnitario = itemAtualizado.ValorUnitario;
                     itemExistente.Desconto = itemAtualizado.Desconto;
-                    itemExistente.Cancelado = itemAtualizado.Cancelado;
 
                     if (!itemExistente.Cancelado && itemAtualizado.Cancelado)
                     {
+                        itemExistente.Cancelado = itemAtualizado.Cancelado;
+
                         // Log do evento ItemCancelado
                         Log.Information("ItemCancelado: Item {Id} da Venda {VendaId} para Cliente {ClienteId}", itemExistente.Id, vendaExistente.Id, vendaExistente.ClienteId);
-                    }
+                    }                                        
                 }
                 else
                 {
