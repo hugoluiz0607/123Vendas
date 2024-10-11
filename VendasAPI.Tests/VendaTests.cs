@@ -43,12 +43,13 @@ public class VendaTests
         var venda = new Venda
         {
             ClienteId = Guid.NewGuid(),
+            FilialId = Guid.NewGuid(),
             DataVenda = DateTime.Now,
             ValorTotal = 100,
             Cancelado = false,
             Itens = new List<ItemVenda>
             {
-                new ItemVenda { ProdutoId = Guid.NewGuid(), Quantidade = 1, ValorUnitario = 100 , Cancelado = false}
+                new ItemVenda { ProdutoId = Guid.NewGuid(), Quantidade = 1, ValorUnitario = 100 ,Desconto = 0, Cancelado = false}
             }
         };
 
@@ -59,7 +60,7 @@ public class VendaTests
         result.Should().BeOfType<CreatedAtActionResult>();
 
         var vendas = _context.Vendas.ToList();
-        vendas.Should().ContainSingle(v => v.ClienteId == venda.ClienteId);        
+        vendas.Should().ContainSingle(v => v.ClienteId == venda.ClienteId);
     }
 
     [Fact]
@@ -70,11 +71,12 @@ public class VendaTests
         {
             ClienteId = Guid.NewGuid(),
             DataVenda = DateTime.Now,
+            FilialId = Guid.NewGuid(),
             ValorTotal = 100,
             Cancelado = false,
             Itens = new List<ItemVenda>
             {
-                new ItemVenda { ProdutoId = Guid.NewGuid(), Quantidade = 1, ValorUnitario = 100, Cancelado = false }
+                new ItemVenda { ProdutoId = Guid.NewGuid(), Quantidade = 1, ValorUnitario = 100, Desconto = 0, Cancelado = false }
             }
         };
 
